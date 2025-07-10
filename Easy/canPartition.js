@@ -13,8 +13,18 @@ The array may contain duplicates.
 Multiple solutions can exist, any solution is sufficient to return true.
 */
 
-function canPartition( /*args*/ ) {
-  //your code
-}
+function canPartition( arrOfNums ) {
+  let originalArr = [...arrOfNums];
 
+  for (let val in arrOfNums){
+    arrOfNums = [...originalArr];
+    arrOfNums.splice(val, 1);
+    let product = arrOfNums.reduce((product, value) => value * product, 1);
+    if (product === originalArr[val]){
+      return true;
+    }
+  }
+  return false;
+}
+console.log(canPartition([-1, -20, 5, -1, -2, 2]));
 exports.solution = canPartition;
