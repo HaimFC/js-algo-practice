@@ -15,8 +15,26 @@ Notes
 The digits can be discovered in any order.
 */
 
-function findAllDigits( /*args*/ ) {
-  //your code
+function findAllDigits(arr) {
+  const dict = { "count": 0, "0": "0", "1": "1", "2": "2", "3": "3", "4": "4", "5": "5", "6": "6", "7": "7", "8": "8", "9": "9" };
+
+  for (let element of arr) {
+    const str = element.toString();
+
+    for (let key in dict) {
+      if (key !== "count" && str.includes(key) && dict[key] !== "-") {
+        dict[key] = "-";
+        dict.count += 1;
+      }
+    }
+
+    if (dict["count"] === 10) {
+      return element;
+    }
+  }
+
+  return "Missing digits!";
 }
 
+//console.log(findAllDigits([4883, 3876, 7769, 9846, 9546, 9634, 9696, 2832, 6822, 6868]));
 exports.solution = findAllDigits;
